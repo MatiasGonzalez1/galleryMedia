@@ -21,7 +21,7 @@ export const createPost = async (req, res) => {
     let image;
 
     //si existe la imagen se procesa para guardarla
-    if(req.files.image){
+    if(req.files?.image){
       const result = await uploadImage(req.files.image.tempFilePath)
       
       //se eliminan las imagenes temporales del servidor

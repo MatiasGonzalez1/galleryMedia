@@ -19,6 +19,6 @@ app.use(morgan('dev'));
 //routes
 app.use(postRoutes);
 
-app.listen(3000, ()=>{
-  console.log('Servidor listo en el puerto 3000')
+app.listen(4000, ()=>{
+  console.log('Servidor listo en el puerto 4000')
 })
