@@ -1,7 +1,7 @@
 import LoaderPost from "../components/LoaderPost"
 import { usePosts } from "../context/postContext"
 import {Link} from 'react-router-dom'
-
+import { PostCard } from "../components/PostCard"
 
 export function Home() {
   
@@ -15,12 +15,11 @@ export function Home() {
      
      <Link to='/new'>Create New Post</Link>
      
+      <div className="grid grid-cols-3 gap-2">
       {allPosts?.map(post => (
-        <div key={post._id}>
-          {post.title}
-          <p>{post.description}</p>
-        </div>
+        <PostCard key={post._id} post={post} />
       ))}
+      </div>
    </div>
   ) 
 }
