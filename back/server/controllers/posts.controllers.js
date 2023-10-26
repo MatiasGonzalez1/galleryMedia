@@ -8,7 +8,7 @@ export const getAllPosts = async (req, res) => {
     if (!posts || posts.length < 1) {
       return res.status(404).json("Posts not found");
     }
-    res.send({ count: posts.length, data: posts });
+    res.send(posts);
   } catch (err) {
     return res.status(500).json({message: err.message})
   }
