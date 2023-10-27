@@ -8,6 +8,8 @@ import {connectDB} from './db.js'
 const app = express()
 connectDB()
 
+const PORT = process.env.PORT || 4000
+
 //middleware
 app.use(express.json())
 app.use(fileUpload({
@@ -19,6 +21,6 @@ app.use(morgan('dev'));
 //routes
 app.use(postRoutes);
 
-app.listen(4000, ()=>{
-  console.log('Servidor listo en el puerto 4000')
+app.listen(PORT, ()=>{
+  console.log(`Servidor listo en el puerto ${PORT}`)
 })
