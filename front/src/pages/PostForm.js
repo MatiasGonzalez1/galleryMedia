@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 export function PostForm() {
   
   //contexto de postContext
-  const { createPost, getPost} = usePosts()
+  const { createPost, getPost, updatePost} = usePosts()
   
   //navegación de react-router-dom
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export function PostForm() {
       setPost(post)
     }
    })()
-  },[])
+  },[params.id])
 
   return (
     <div className='flex items-center justify-center'>
@@ -44,7 +44,13 @@ export function PostForm() {
         description: yup.string().required("Description is required")
       })}
       onSubmit={ async(values, actions)=>{
-        await createPost(values)
+
+        if(params.id){
+          await updatePost(params.id, values)
+        } else {
+          await createPost(values)
+        }
+
         navigate('/')
       }}
       //reinicia los datos para poder mostrar los datos en los input al editar id's
