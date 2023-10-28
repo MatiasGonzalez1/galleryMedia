@@ -3,6 +3,7 @@ import * as yup from 'yup'
 import {usePosts} from '../context/postContext'
 import {useNavigate, useParams, Link} from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 
 export function PostForm() {
   
@@ -52,13 +53,13 @@ export function PostForm() {
         } else {
           await createPost(values)
         }
-
+        actions.setSubmitting(false)
         navigate('/')
       }}
       //reinicia los datos para poder mostrar los datos en los input al editar id's
       enableReinitialize={true}
       >
-        {({handleSubmit, setFieldValue})=> (
+        {({handleSubmit, setFieldValue, isSubmitting})=> (
           <Form onSubmit={handleSubmit}>
 
             <label htmlFor='title' className='text-sm block mb-2 font-bold text-gray-400'>Titulo</label>
@@ -83,7 +84,7 @@ export function PostForm() {
 
           <ErrorMessage className='text-red-500 text-sm' component='p' name='image'/>
          
-          <button type='submit' className='bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400'>Guardar</button>
+          <button type='submit' className='bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400' disabled={isSubmitting}>{isSubmitting ? (<AiOutlineLoading3Quarters className='animate-spin h-5 w-5'/>) : ('Guardar') }</button>
         </Form>
         )}
       </Formik>

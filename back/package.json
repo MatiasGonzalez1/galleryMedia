@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js --ignore front",
+    "start": "node index.js",
+    "dev": "nodemon index.js --ignore front",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
