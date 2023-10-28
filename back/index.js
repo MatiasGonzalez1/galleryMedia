@@ -7,6 +7,8 @@ import {connectDB} from './server/db.js'
 // import {dirname, join} from 'path'
 // import { fileURLToPath } from 'url';
 
+app.use(cors())
+
 const app = express()
 // const __dirname = dirname(fileURLToPath(import.meta.url))
 
