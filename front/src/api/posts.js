@@ -2,7 +2,20 @@ import axios from 'axios'
 
 export const getPostsRequests = async () => await axios.get('/posts')
 
-export const createPostRequest = async (post) => await axios.post('posts', post)
+export const createPostRequest = async (post) => { 
+
+  //se transforma el objeto recibido en un formulario para enviar al backend
+const form = new FormData()
+
+for(let key in post){
+  form.append(key, post[key])
+}
+return await axios.post('/posts', form, {
+  headers: {
+    "Content-Type": "multipart/form/data"
+  }
+})
+}
 
 export const deletePostRequest = async id => await axios.delete('/posts/'+id)
 

@@ -17,6 +17,7 @@ export function PostForm() {
   const [post, setPost] = useState({
     title: '',
     description: '',
+    image: null
   });
 
   useEffect(()=>{
@@ -40,8 +41,9 @@ export function PostForm() {
       {/* se inicializan los input con una cadena vacia */}
       <Formik initialValues={post}
       validationSchema={yup.object({
-        title: yup.string().required("Title is required"),
-        description: yup.string().required("Description is required")
+        title: yup.string().required("Debes ingresar un título"),
+        description: yup.string().required("Debes de ingresar una descripción"),
+        image: yup.mixed().nullable(true).required("la imagen es necesaria")
       })}
       onSubmit={ async(values, actions)=>{
 
@@ -56,7 +58,7 @@ export function PostForm() {
       //reinicia los datos para poder mostrar los datos en los input al editar id's
       enableReinitialize={true}
       >
-        {({handleSubmit})=> (
+        {({handleSubmit, setFieldValue})=> (
           <Form onSubmit={handleSubmit}>
 
             <label htmlFor='title' className='text-sm block mb-2 font-bold text-gray-400'>Titulo</label>
@@ -72,6 +74,14 @@ export function PostForm() {
           <Field component='textarea' className='px-3 py-2 mb-4 focus:outline-none rounded bg-gray-600 text-white w-full' name='description' placeholder='description' rows={3}/>
 
           <ErrorMessage className='text-red-500 text-sm' component='p' name='description'/>
+
+          <label htmlFor='image' className='text-sm block mb-2 font-bold text-gray-400'>Descripcion</label>
+          
+        <input type='file' name='image' className='px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full'
+        onChange={(e)=>setFieldValue('image',e.target.files[0])}
+        />
+
+          <ErrorMessage className='text-red-500 text-sm' component='p' name='image'/>
          
           <button type='submit' className='bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400'>Guardar</button>
         </Form>
