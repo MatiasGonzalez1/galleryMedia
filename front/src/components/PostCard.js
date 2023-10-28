@@ -11,7 +11,7 @@ export function PostCard({ post }) {
 
   const handleDelete = (id) => {
     toast((t)=>(
-      <div >
+      <div className='py-10 mb-5'>
         <p className='text-white'> 
           ¿Estás seguro que quieres eliminar? <strong>{id}</strong>
         </p>
@@ -51,8 +51,8 @@ export function PostCard({ post }) {
           </button>
         </div>
         <p>{post.description}</p>
-            {post.image && <img src={post.image.url} alt='img'/>}
       </div>
+            {post.image && <img src={post.image.url} alt='img' className='w-full h-96 object-cover'/>}
     </div>
   );
 }
