@@ -7,7 +7,6 @@ import {connectDB} from './server/db.js'
 // import {dirname, join} from 'path'
 // import { fileURLToPath } from 'url';
 
-app.use(cors())
 
 const app = express()
 // const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -18,6 +17,7 @@ const port = process.env.PORT || 4000
 
 //middleware
 app.use(express.json())
+app.use(cors())
 app.use(fileUpload({
   useTempFiles: true,
   tempFileDir: './upload'
