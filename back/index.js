@@ -1,6 +1,7 @@
 import express from 'express';
 import fileUpload from 'express-fileupload';
 import morgan from 'morgan';
+import cors from 'cors'
 
 import postRoutes from './server/routes/posts.routes.js';
 import {connectDB} from './server/db.js'
@@ -11,13 +12,14 @@ import {connectDB} from './server/db.js'
 const app = express()
 // const __dirname = dirname(fileURLToPath(import.meta.url))
 
+app.use(cors())
+
 connectDB()
 
 const port = process.env.PORT || 4000
 
 //middleware
 app.use(express.json())
-app.use(cors())
 app.use(fileUpload({
   useTempFiles: true,
   tempFileDir: './upload'

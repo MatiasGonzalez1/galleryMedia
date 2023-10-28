@@ -9,7 +9,22 @@ export function Home() {
   // const allPosts = posts.data
  
   //validación en el caso de que no hayan posts
-  if(!posts) return <LoaderPost/>;
+
+  const renderMain = () => {
+
+    if(!posts) return (
+      <LoaderPost/>
+      );
+
+    return (
+      <div className="grid grid-cols-3 gap-2">
+      {posts.map(post => (
+        <PostCard key={post._id} post={post} />
+      ))}
+      </div>
+  )
+}
+
   return (
     <div className="text-white">
       <header className="flex justify-between
@@ -20,13 +35,11 @@ export function Home() {
      <Link to='/new' >Create New Post</Link>
      </div>
         </header>
+
+        {renderMain()}
     
      
-      <div className="grid grid-cols-3 gap-2">
-      {posts.map(post => (
-        <PostCard key={post._id} post={post} />
-      ))}
-      </div>
+      
    </div>
   ) 
 }
